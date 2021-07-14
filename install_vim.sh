@@ -1,35 +1,28 @@
-# Update vim
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt update
-sudo apt install -y vim
+# Install neovim
+sudo add-apt-repository -y ppa:neovim-ppa/stable \
+    && sudo apt update \
+    && sudo apt install -y neovim
 
-# Vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# nodejs, Yarn
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
-cp ./init.vim ~/.vimrc
-vim +PluginInstall +qall
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn<Paste>
 
-### Setting for YoucompleteMe ###
+# Install vim plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-# cmake update
-wget https://github.com/Kitware/CMake/releases/download/v3.18.2/cmake-3.18.2.tar.gz 
-tar -xvf cmake-3.18.2.tar.gz
-rm cmake-3.18.2.tar.gz
-cd cmake-3.18.2
-./bootstrap
-make
-sudo make install
+NVIMDIR=~/.config/nvim
 
-# other dependencies
-sudo apt install -y g++-8 mono-complete golang nodejs default-jdk npm
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-sudo apt update
-sudo apt install -y gcc-9 libstdc++6
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+if [ ! -d "$NVIMDIR" ]; then
+    echo "== ${NVIMDIR} doesn't exist"
+    echo "== create ${NVIMDIR}"
+    mkdir -p "$NVIMDIR"
+fi
 
-# compile YCM
-cd ${HOME}/.vim/bundle/YouCompleteMe
-python install.py --all
+cp ./init.vim "${NVIMDIR}"/init.vim
 
-###################################
+
