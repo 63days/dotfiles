@@ -24,6 +24,7 @@ sudo locale-gen en_US.UTF-8
 echo LANG en_US.UTF-8
 echo LANGUAGE en_US:en
 echo LC_ALL en_US.UTF-8
+sudo timedatectl set-timezone 'Asia/Seoul'
 
 # Non-interactive package installation
 echo DEBIAN_FRONTEND=noninteractive
