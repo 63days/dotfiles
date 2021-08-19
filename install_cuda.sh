@@ -5,5 +5,5 @@ sudo sh cuda_11.0.2_450.51.05_linux.run
 echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-11.0/lib64' >> ~/.zshrc
 echo 'export PATH=${PATH}:/usr/local/cuda-11.0/bin' >> ~/.zshrc
 source ~/.zshrc
-
+# cudnn version: libcudnn8_8.0.5.39-1+cuda11.0_amd64.deb
     
