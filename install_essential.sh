@@ -8,6 +8,9 @@ sudo apt-get update && sudo apt-get install -y \
   apt-utils && \
   sudo apt-get -y autoremove && sudo apt-get -y clean
 
+touch ~/.tmux.conf
+echo "set -g mouse on" >> ~/.tmux.conf
+
 # Rebuild cache
 cd /var/lib/apt && \
   sudo mv lists lists.old && \
