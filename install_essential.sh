@@ -5,6 +5,7 @@ sudo apt-get update && sudo apt-get install -y \
   locales \
   screen \
   tmux \
+  cmake \
   apt-utils && \
   sudo apt-get -y autoremove && sudo apt-get -y clean
 
