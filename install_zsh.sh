@@ -1,6 +1,3 @@
-# install zsh
-sudo apt-get install -y zsh
-
 # oh-my-zsh
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -19,7 +16,5 @@ echo 'prompt_context() {
 		prompt_segment black default "%(!.%{%F{yellow}%}.) kcloud"
 	fi
 }' >> ${HOME}/.zshrc
-echo "alias vim=\"nvim\"">> ~/.zshrc
-echo "alias vi=\"nvim\"">> ~/.zshrc
 
 source ${HOME}/.zshrc
