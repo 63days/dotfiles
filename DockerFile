@@ -12,6 +12,9 @@ RUN apt update && apt install -y \
 	git \
 	man \
 	wget \
+    htop \
+    vim \
+    nano \
 	openssh-server \
 	sudo \
 	tmux \
