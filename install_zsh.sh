@@ -14,7 +14,7 @@ sed -i 's/robbyrussell/agnoster/' ~/.zshrc
 
 echo 'prompt_context() {
 	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-		prompt_segment black default "%(!.%{%F{yellow}%}.) kcloud"
+		prompt_segment black default "%(!.%{%F{yellow}%}.) juil"
 	fi
 }' >> ${HOME}/.zshrc
 

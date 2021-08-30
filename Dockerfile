@@ -33,13 +33,6 @@ ENV LC_ALL en_US.UTF-8
 
 RUN groupadd -g 1006 juil
 RUN useradd -u 1006 -g 1006 juil && echo "juil:juil" | chpasswd && adduser juil sudo
-WORKDIR /workspace
-RUN chown -R juil:juil /workspace
-USER juil
-RUN git clone https://github.com/63days/dotfiles
-RUN cd dotfiles
-RUN bash dotfiles/install_vim.sh
-RUN bash dotfiles/install_zsh.sh
 
 EXPOSE 22
 
