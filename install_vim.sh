@@ -1,3 +1,4 @@
+#!/bin/bash
 # display a message in red with a cross by it
 # example
 # echo echo_fail "No"
