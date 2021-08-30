@@ -18,4 +18,11 @@ echo 'prompt_context() {
 	fi
 }' >> ${HOME}/.zshrc
 
+if [ $(program_is_installed nvim) == 1]; then
+	echo 'alias vi="nvim"' >> ~/.zshrc
+	echo 'alias vim="nvim"' >> ~/.zshrc
+fi
+
 source ${HOME}/.zshrc
+
+

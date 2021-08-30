@@ -69,5 +69,3 @@ fi
 
 cp ./init.vim "${NVIMDIR}"/init.vim
 
-echo "alias vi='nvim'" >> ~/.zshrc
-echo "alias vim='nvim'" >> ~/.zshrc
