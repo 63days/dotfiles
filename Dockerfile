@@ -6,14 +6,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 RUN apt-get update && apt-get install -y \
 	apt-utils \
 	build-essential \
-	cmake \
 	curl \
 	git \
 	man \
 	wget \
-    	htop \
-    	vim \
-    	nano \
+    htop \
+    vim \
+    nano \
 	openssh-server \
 	sudo \
 	tmux \
@@ -31,8 +30,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
-RUN groupadd -g 1006 juil
-RUN useradd -u 1006 -g 1006 juil && echo "juil:juil" | chpasswd && adduser juil sudo
+RUN groupadd -g 1001 juil
+RUN useradd -u 1001 -g 1001 juil && echo "juil:juil" | chpasswd && adduser juil sudo
 
 EXPOSE 22
 

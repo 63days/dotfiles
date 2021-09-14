@@ -1,6 +1,7 @@
 docker run -p 6363:22 -it \
 	--restart unless-stopped \
-	--gpus '"device=0,1"' \
+    --ipc=host \ 
+	--gpus '"device=6,7"' \
 	--name juil \
 	-v /home/juil/docker_home:/home/juil/ \
 	juil:0.1 \
