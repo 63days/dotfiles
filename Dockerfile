@@ -13,11 +13,13 @@ RUN apt-get update && apt-get install -y \
     htop \
     vim \
     nano \
+    ctags \
 	openssh-server \
 	sudo \
 	tmux \
 	cmake \
 	software-properties-common \
+    libgl1-mesa-glx \
 	locales \
 	zsh && \
 	apt-get -y autoremove && apt-get -y clean

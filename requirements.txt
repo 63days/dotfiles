@@ -143,7 +143,6 @@ tornado==6.1
 tqdm==4.56.0
 traitlets==5.0.5
 transformers==4.8.2
--e git+https://github.com/63days/transglot_backup@e386a655aa2b47bcb7af1cff75ad4a8e6480a121#egg=transglot
 trimesh==3.9.26
 typeguard==2.12.1
 typing-extensions==3.7.4.3
