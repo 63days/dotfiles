@@ -67,5 +67,5 @@ if [ ! -d "$NVIMDIR" ]; then
     mkdir -p "$NVIMDIR"
 fi
 
-cp ./init.vim "${NVIMDIR}"/init.vim
-
+ln -s ~/dotfiles/init.vim "${NVIMDIR}/init.vim"
+ln -s ~/dotfiles/coc-settings.json "${NVIMDIR}/coc-settings.json"
