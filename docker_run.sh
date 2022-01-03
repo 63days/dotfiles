@@ -1,10 +1,12 @@
-docker run -p 6363:22 -it \
-	--restart unless-stopped \
+docker run \
+    -h geometry1 \ # optional
+    -it \
     --ipc=host \ 
-	--gpus '"device=6,7"' \
-	--name juil \
-	-v /home/juil/docker_home:/home/juil/ \
-	juil:0.1 \
-	/bin/zsh
-#--user $(id -u):$(id -g) \
-
+    --restart unless-stopped \
+    --gpus all \
+    #--gpus '"device=0,1"' # You can assign specific gpu devices.
+    -p @YOUR_PORT:22 \ # port forwarding
+    --name @CONTAINER_NAME \
+    -v @HOST_DIR:@CONTAINER_DIR \ # e.g. -v /home/juil/docker_home:/home/juil
+    test:0.1 \ # docker image
+    /bin/zsh
