@@ -40,3 +40,5 @@ In the container, start ssh:
 Now you can directly access to the container:
 
 `$ ssh geometry@143.248.49.20 -p PORT`
+
+![docker_access](./doc/images/container_access.png)
