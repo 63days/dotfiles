@@ -1,21 +1,30 @@
 # Quick set-ups with Docker
 
-## Build Docker image
-```$ docker build -t docker/juil:0.1 \ 
+## 1. Build a Docker image
+_Dockerfile_ is just a text file containing the commands to build a image, e.g., apt-get install.
+
+You can build an image from _Dockerfile_ by the following command:
+```console
+$ docker build -t docker/juil:0.1 \ 
     --build-arg UID=$UID \
     --build-arg GID=$GID \ 
     .
 ```
-## Create Docker container
-```
+
+## 2. Create a Docker container
+After building a Docker image, you can instantiate a container from that.
+You can think of an image as a class and a container as an instance.
+
+Required options look so verbose that I made a script file to execute docker run.
+```console
 $ sh docker_run.sh
 ```
-
-```shell
+__docker_run.sh:__
+```sh
 docker run \
-    -h geometry1 \ # optional
+    -h geometry1 \ # (optional) hostname
     -it \
-    --ipc=host \ 
+    --ipc=host \ # to prevent memory errors
     --restart unless-stopped \
     --gpus all \
     #--gpus '"device=0,1"' # You can assign specific gpu devices.
@@ -25,3 +34,9 @@ docker run \
     test:0.1 \ # docker image
     /bin/zsh
 ```
+In the container, start ssh:
+`$ sudo service ssh start`
+
+Now you can directly access to the container:
+
+`$ ssh geometry@143.248.49.20 -p PORT`
