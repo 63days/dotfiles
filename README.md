@@ -1,7 +1,7 @@
 # Quick set-ups with Docker
 
 ## 1. Build a Docker image
-_Dockerfile_ is just a text file containing the commands to build a image, e.g., apt-get install.
+_Dockerfile_ is just a text file containing the commands, e.g., apt-get install.
 
 You can build an image from _Dockerfile_ by the following command:
 ```console
