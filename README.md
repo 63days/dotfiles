@@ -5,14 +5,13 @@ _Dockerfile_ is just a config file containing the commands, e.g., apt-get instal
 
 You can build an image from _Dockerfile_ by the following command:
 ```console
-$ docker build -t docker/juil:0.1 \ 
-    --build-arg USER_NAME=@YOUR_NAME \
+$ docker build -t @IMAGE_NAME \ 
+    --build-arg USER_NAME=$USER \
     --build-arg PASSWORD=@YOUR_PASSWORD \
     --build-arg UID=$UID \
-    --build-arg GID=$GID \ 
     .
 ```
-_@VAR_ is for the variable that needs to be set by hand.
+Pass _@VAR_ by hand.
 
 ## 2. Create a Docker container
 After building a Docker image, you can instantiate a container from that.
@@ -25,16 +24,15 @@ $ sh docker_run.sh
 __docker_run.sh:__
 ```sh
 docker run \
-    -h @HOST_NAME \ # (optional) hostname
     -it \
     --ipc=host \ # to prevent memory errors
     --restart unless-stopped \
     --gpus all \
     #--gpus '"device=0,1"' # You can assign specific gpu devices.
-    -p @YOUR_PORT:22 \ # port forwarding
+    -p @PORT_NUM:22 \ # port forwarding
     --name @CONTAINER_NAME \
     -v @HOST_DIR:@CONTAINER_DIR \ # e.g. -v /home/juil/docker_home:/home/juil
-    test:0.1 \ # docker image
+    @IMAGE_NAME \ # docker image
     /bin/zsh
 ```
 After entering the container, start ssh:
@@ -42,6 +40,6 @@ After entering the container, start ssh:
 
 Now you can directly access to the container:
 
-`$ ssh YOUR_NAME@143.248.49.20 -p PORT`
+`$ ssh USER_NAME@143.248.49.20 -p PORT_NUM`
 
 ![docker_access](./doc/images/container_access.png)
