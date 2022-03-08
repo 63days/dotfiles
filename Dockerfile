@@ -10,7 +10,6 @@ ARG PASSWORD=geometry
 # UID and GID should be manually declared when building Dockerfile.
 # e.g. docker build --build-arg UID=$UID --build-arg GID=$GID
 ARG UID
-ARG GID
 
 # install some essential packages
 RUN apt-get update && apt-get install -y \
@@ -55,8 +54,8 @@ RUN systemctl enable ssh
 RUN echo "root:root" | chpasswd 
 
 # add a user
-RUN groupadd -g $GID $USER_NAME
-RUN useradd -u $UID -g $GID $USER_NAME && echo "${USER_NAME}:${PASSWORD}" | chpasswd && adduser $USER_NAME sudo
+RUN groupadd -g $UID $USER_NAME
+RUN useradd -u $UID -g $UID $USER_NAME && echo "${USER_NAME}:${PASSWORD}" | chpasswd && adduser $USER_NAME sudo
 USER $USER_NAME
 
 WORKDIR /home/$USER_NAME
