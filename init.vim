@@ -15,6 +15,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'preservim/tagbar'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
 
 """"""""""""""""""""""""""""""""""
@@ -48,7 +49,7 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -146,14 +147,16 @@ au BufReadPost *
 
 " mapping
 let mapleader=","
-nmap <leader>vimrc :tabe ~/.config/nvim/init.vim<cr>
+nmap <leader>vimrc :e ~/.config/nvim/init.vim<cr>
 "nmap <leader>f :Files<cr>
 nmap <F3> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 map <esc> :noh<cr>
 map <leader>q :bp<cr>
 map <leader>e :bn<cr>
-map <leader>w :bw<cr>
+"map <leader>w :bn|bp # <cr>
+map <leader>w :bp\|bw #<CR>
+"map <leader>w :bw<cr>
 map <leader>diag :CocDiagnostics 4<cr>
 set pastetoggle=<f2>
 
@@ -180,8 +183,27 @@ let g:fzf_action = {
     \ 'ctrl-v': 'vsplit' }
 
 "NERDTree 
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+" https://github.com/preservim/nerdtree/issues/1272
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+"nvim-preview
+let g:mkdp_open_to_the_world = 1 
+let g:mkdp_open_ip = '127.0.0.1'
+let g:mkdp_port = 5555
