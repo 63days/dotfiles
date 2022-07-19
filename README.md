@@ -37,9 +37,3 @@ $ sh docker_run.sh
 
 After entering the container, start ssh:
 `$ sudo service ssh start`
-
-Now you can directly access to the container:
-
-`$ ssh USER_NAME@143.248.49.20 -p PORT_NUM`
-
-![docker_access](./doc/images/container_access.png)
