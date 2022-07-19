@@ -13,8 +13,8 @@ ARG UID
 
 # install some essential packages
 RUN apt-get update && apt-get install -y \
-	apt-utils \
-	build-essential \
+    apt-utils \
+    build-essential \
     curl \
     git \
     man \
@@ -23,16 +23,16 @@ RUN apt-get update && apt-get install -y \
     vim \
     nano \
     ctags \
-	openssh-server \
-	sudo \
+    openssh-server \
+    sudo \
     tmux \
-	cmake \
+    cmake \
     software-properties-common \
     libgl1-mesa-glx \
-	locales \
+    locales \
     tzdata \
-	zsh && \
-	apt-get -y autoremove && apt-get -y clean
+    zsh && \
+    apt-get -y autoremove && apt-get -y clean
 
 # set a timezone as Asia/Seoul
 ENV TZ Asia/Seoul
@@ -50,6 +50,10 @@ ENV LC_ALL en_US.UTF-8
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 RUN systemctl enable ssh
+
+# start ssh
+ENTRYPOINT service ssh start
+
 # set the root password
 RUN echo "root:root" | chpasswd 
 

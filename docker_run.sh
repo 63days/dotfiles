@@ -1,11 +1,13 @@
-docker run -it \
+docker run \
+    -it \
     --ipc=host \
-    --pid=host \
+    --cap-add LINUX_IMMUTABLE \
+    --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
+    -e DISPLAY=unix$DISPLAY \
     --restart unless-stopped \
     --gpus all \
-    -p @PORT_NUM:22 \
-    --name @CONTAINER_NAME \
-    -h geometry \
-    -v $HOME/docker_home:$HOME \
-    @IMAGE_NAME \
+    -p 10002:22 \
+    --name juil \
+    -v /home/juil/docker_home:/home/juil \
+    juil \
     /bin/zsh
