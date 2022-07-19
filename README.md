@@ -41,3 +41,4 @@ After entering the container, start ssh:
 `bash install_vim.sh`
 `bash install_zsh.sh`
 `cp tmux.conf ~/.tmux.conf`
+`git config --global credential.helper store # to store the git information`
