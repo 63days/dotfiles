@@ -52,7 +52,6 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 RUN systemctl enable ssh
 
 # start ssh
-ENTRYPOINT service ssh start
 
 # set the root password
 RUN echo "root:root" | chpasswd 

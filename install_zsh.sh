@@ -36,25 +36,42 @@ else
     sudo apt-get install -y zsh
 fi
 
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTON:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${HOME}/.zshrc
-echo "source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${HOME}/.zshrc
 sed -i 's/robbyrussell/agnoster/' ~/.zshrc
+sed -i 's/# alias zshconfig="mate ~\/.zshrc"/alias zshconfig="source ~\/.zshrc"/g' ${HOME}/.zshrc
+if ! grep "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ${HOME}/.zshrc; then
+    echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${HOME}/.zshrc
+else
+    echo "already zsh-autosuggestions linked"
+fi
+    
+if ! grep "source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ${HOME}/.zshrc; then
+    echo "source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${HOME}/.zshrc
+else
+    echo "already zsh-syntax-highlighting linked"
+fi
 
-echo 'prompt_context() {
-	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-		prompt_segment black default "%(!.%{%F{yellow}%}.) juil"
-	fi
-}' >> ${HOME}/.zshrc
+if ! grep "prompt_context()" ${HOME}/.zshrc; then
+    echo 'prompt_context() {
+        if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+            prompt_segment black default "%(!.%{%F{yellow}%}.) juil"
+        fi
+    }' >> ${HOME}/.zshrc
+fi
 
 if [ $(program_is_installed nvim) == 1 ]; then
-	
-	echo 'alias vi="nvim"' >> ~/.zshrc
-	echo 'alias vim="nvim"' >> ~/.zshrc
+    
+    if ! grep "alias vi=\"nvim\"" ${HOME}/.zshrc; then
+	    echo 'alias vi="nvim"' >> ${HOME}/.zshrc
+    fi
+    
+    if ! grep "alias vim=\"nvim\"" ${HOME}/.zshrc; then
+        echo 'alias vim="nvim"' >> ${HOME}/.zshrc
+    fi
 fi
 
 source ${HOME}/.zshrc
