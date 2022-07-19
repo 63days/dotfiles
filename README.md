@@ -38,7 +38,9 @@ $ sh docker_run.sh
 After entering the container, start ssh:
 `$ sudo service ssh start`
 
-`bash install_vim.sh`
-`bash install_zsh.sh`
-`cp tmux.conf ~/.tmux.conf`
-`git config --global credential.helper store # to store the git information`
+```sh
+bash install_vim.sh
+bash install_zsh.sh
+cp tmux.conf ~/.tmux.conf
+git config --global credential.helper store # to store the git information
+```
