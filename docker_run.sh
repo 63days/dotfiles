@@ -5,6 +5,7 @@ docker run \
     --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
     -e DISPLAY=unix$DISPLAY \
     --restart unless-stopped \
+    --pid=host \
     --gpus all \
     -p 6363:22 \
     --name juil \
