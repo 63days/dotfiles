@@ -10,5 +10,6 @@ docker run \
     -p 6363:22 \
     --name juil \
     -v /home/juil/docker_home:/home/juil \
+    --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
     juil \
     /bin/zsh
