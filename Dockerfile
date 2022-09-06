@@ -14,6 +14,7 @@ ARG UID
 RUN apt-get update && apt-get install -y \
     apt-utils \
     x11-apps \
+    eog \
     build-essential \
     curl \
     git \
