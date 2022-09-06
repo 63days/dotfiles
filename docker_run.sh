@@ -3,7 +3,7 @@ docker run \
     --ipc=host \
     --cap-add LINUX_IMMUTABLE \
     --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
-    -e DISPLAY=unix$DISPLAY \
+    -e DISPLAY=$DISPLAY \
     --restart unless-stopped \
     --pid=host \
     --gpus all \
