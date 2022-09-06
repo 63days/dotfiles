@@ -13,6 +13,7 @@ ARG UID
 # install some essential packages
 RUN apt-get update && apt-get install -y \
     apt-utils \
+    x11-apps \
     build-essential \
     curl \
     git \
