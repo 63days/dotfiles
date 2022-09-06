@@ -6,7 +6,7 @@ docker run \
     -e DISPLAY=unix$DISPLAY \
     --restart unless-stopped \
     --gpus all \
-    -p 10002:22 \
+    -p 6363:22 \
     --name juil \
     -v /home/juil/docker_home:/home/juil \
     juil \
