@@ -52,13 +52,6 @@ nmap <leader>rn <Plug>(coc-rename)
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
 let col = col('.') - 1
@@ -79,6 +72,9 @@ function! EnterSelect()
         return "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
     endif
 endfunction
+
+" To survive after color scheme change, use
+autocmd ColorScheme * hi CocMenuSel ctermbg=237 guibg=#13354A
 
 inoremap <silent><expr> <cr> EnterSelect()
 " Remap keys for gotos
@@ -136,6 +132,7 @@ set ts=4 sts=4 shiftwidth=4 expandtab
 set autoindent cindent smartindent
 set updatetime=100
 set clipboard=unnamedplus
+"set clipboard^=unnamed
 set showmode
 set wrap breakindent
 set formatoptions-=ro "turn off comment when inserting a new line below the comment
