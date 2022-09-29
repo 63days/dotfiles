@@ -43,4 +43,5 @@ bash install_vim.sh
 bash install_zsh.sh
 cp tmux.conf ~/.tmux.conf
 git config --global credential.helper store # to store the git information
+pip install "git+https://github.com/facebookresearch/pytorch3d.git" # install pytorch3d
 ```
