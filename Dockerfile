@@ -1,14 +1,15 @@
-FROM pytorch/pytorch:1.9.1-cuda11.1-cudnn8-devel
+#FROM pytorch/pytorch:1.9.1-cuda11.1-cudnn8-devel
+FROM nvidia/cudagl:11.4.2-devel-ubuntu20.04
 # To dismiss interactive messages while installing packages
 ARG DEBIAN_FRONTEND=noninteractive
 
 # set a user name and a password 
-ARG USER_NAME=geometry
+ARG USER_NAME=juil
 ARG PASSWORD=geometry
 
 # UID and GID should be manually declared when building Dockerfile.
 # e.g. docker build --build-arg UID=$UID --build-arg GID=$GID
-ARG UID
+ARG UID=1001
 
 # install some essential packages
 RUN apt-get update && apt-get install -y \
@@ -32,6 +33,7 @@ RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     locales \
     tzdata \
+    eog \
     zsh && \
     apt-get -y autoremove && apt-get -y clean
 

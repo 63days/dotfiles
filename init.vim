@@ -16,6 +16,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'preservim/tagbar'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'jremmen/vim-ripgrep'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""
@@ -159,7 +161,7 @@ au BufReadPost *
 " mapping
 let mapleader=","
 nmap <leader>vimrc :e ~/.config/nvim/init.vim<cr>
-"nmap <leader>f :Files<cr>
+nmap <leader>f :Files<cr>
 nmap <F3> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 map <esc> :noh<cr>
@@ -218,3 +220,11 @@ endfunction
 let g:mkdp_open_to_the_world = 1 
 let g:mkdp_open_ip = '127.0.0.1'
 let g:mkdp_port = 5555
+
+"clang-format
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "BreakBeforeBraces" : "Stroustrup"}

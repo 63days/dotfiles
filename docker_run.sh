@@ -3,13 +3,15 @@ docker run \
     --ipc=host \
     --cap-add LINUX_IMMUTABLE \
     --volume /tmp/.X11-unix:/tmp/.X11-unix:ro \
+    -p 6364:22 \
     -e DISPLAY=$DISPLAY \
     --restart unless-stopped \
     --pid=host \
     --gpus all \
-    -p 6363:22 \
-    --name juil \
+    --name juil_kcloud_file_share \
     -v /home/juil/docker_home:/home/juil \
-    --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
-    juil \
+    -v="$HOME/.Xauthority:/root/.Xauthority:rw" \
+    -v="/home/shared:/shared" \
+    -v="/home/yesung31:/yesung" \
+    juil:0.2 \
     /bin/zsh

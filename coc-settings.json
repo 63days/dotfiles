@@ -7,4 +7,5 @@
     "diagnostic.hintSign": "➤",
     "diagnostic.refreshOnInsertMode": true,
     "python.analysis.typeCheckingMode": "off",
+    "suggest.noselect": true
 }
