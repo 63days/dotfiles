@@ -18,6 +18,7 @@ Plug 'preservim/tagbar'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'jremmen/vim-ripgrep'
 Plug 'rhysd/vim-clang-format'
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""
