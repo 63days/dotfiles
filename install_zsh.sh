@@ -41,7 +41,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTON:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-sed -i 's/robbyrussell/agnoster/' ~/.zshrc
 sed -i 's/# alias zshconfig="mate ~\/.zshrc"/alias zshconfig="source ~\/.zshrc"/g' ${HOME}/.zshrc
 if ! grep "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ${HOME}/.zshrc; then
     echo "source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${HOME}/.zshrc
@@ -74,6 +73,9 @@ if [ $(program_is_installed nvim) == 1 ]; then
     fi
 fi
 
+# change theme
+ln -s ${PWD}/juil.zsh-theme ~/.oh-my-zsh/themes/
+sed -i 's/robbyrussell/juil/' ~/.zshrc
 source ${HOME}/.zshrc
 
 

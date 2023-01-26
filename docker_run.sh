@@ -12,6 +12,5 @@ docker run \
     -v /home/juil/docker_home:/home/juil \
     -v="$HOME/.Xauthority:/root/.Xauthority:rw" \
     -v="/home/shared:/shared" \
-    -v="/home/yesung31:/yesung" \
     juil:0.2 \
     /bin/zsh

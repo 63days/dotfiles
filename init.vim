@@ -16,9 +16,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'preservim/tagbar'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'jremmen/vim-ripgrep'
 Plug 'rhysd/vim-clang-format'
-Plug 'jremmen/vim-ripgrep'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""
@@ -64,8 +63,8 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+"vmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
 
 function! s:check_back_space() abort
 let col = col('.') - 1
@@ -91,8 +90,7 @@ endfunction
 autocmd ColorScheme * hi CocMenuSel ctermbg=237 guibg=#13354A
 
 "inoremap <silent><expr> <cr> EnterSelect()
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? "\<C-y><CR>" : "\<CR>"
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -161,18 +159,23 @@ au BufReadPost *
 
 " mapping
 let mapleader=","
-nmap <leader>vimrc :e ~/.config/nvim/init.vim<cr>
-nmap <leader>f :Files<cr>
-nmap <F3> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
-map <esc> :noh<cr>
-map <leader>q :bp<cr>
-map <leader>e :bn<cr>
+noremap <leader>vimrc :e ~/.config/nvim/init.vim<cr>
+noremap <leader>zshrc :e ~/.zshrc<cr>
+noremap <leader>juilib :e ${HOME}/lib/juil_utils/jutils/<cr>
+noremap <space>f :Files<cr>
+noremap <F3> :NERDTreeToggle<CR>
+noremap <F8> :TagbarToggle<CR>
+noremap <esc> :noh<cr>
+noremap <leader>q :bp<cr>
+noremap <leader>e :bn<cr>
 "map <leader>w :bn|bp # <cr>
-map <leader>w :bp\|bw #<CR>
+noremap <leader>w :bp\|bw #<CR>
 "map <leader>w :bw<cr>
-map <leader>diag :CocDiagnostics 4<cr>
+noremap <leader>diag :CocDiagnostics 4<cr>
+noremap <leader>p o<esc>p
+noremap <leader>o O<esc>p
 set pastetoggle=<f2>
+
 
 " theme
 colo onedark
@@ -196,6 +199,12 @@ let g:fzf_action = {
     \ 'ctrl-x': 'split',
     \ 'ctrl-v': 'vsplit' }
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+nmap <space>g :Rg<cr>
+
 "NERDTree 
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
@@ -216,11 +225,6 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
   endif
 endfunction
-
-"nvim-preview
-let g:mkdp_open_to_the_world = 1 
-let g:mkdp_open_ip = '127.0.0.1'
-let g:mkdp_port = 5555
 
 "clang-format
 let g:clang_format#style_options = {
