@@ -89,8 +89,8 @@ endfunction
 " To survive after color scheme change, use
 autocmd ColorScheme * hi CocMenuSel ctermbg=237 guibg=#13354A
 
-"inoremap <silent><expr> <cr> EnterSelect()
-inoremap <silent><expr> <CR> coc#pum#visible() ? "\<C-y><CR>" : "\<CR>"
+inoremap <silent><expr> <cr> EnterSelect()
+"inoremap <silent><expr> <CR> coc#pum#visible() ? "\<C-y><CR>" : "\<CR>"
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)

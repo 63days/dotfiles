@@ -23,7 +23,7 @@ git_custom_status() {
 ZSH_THEME_HOSTNAME_PROMPT_PREFIX="%{$reset_color%}%{$fg[blue]%}["
 #ZSH_THEME_HOSTNAME_PROMPT_PREFIX="%{$reset_color%}%{$F{69}%}["
 ZSH_THEME_HOSTNAME_PROMPT_SUFFIX="]%{$reset_color%}"
-HOSTNAME="docker1"
+HOSTNAME="%m"
 # show hostname
 show_hostname() {
     echo "$ZSH_THEME_HOSTNAME_PROMPT_PREFIX$HOSTNAME$ZSH_THEME_HOSTNAME_PROMPT_SUFFIX"
