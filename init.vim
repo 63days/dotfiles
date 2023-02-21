@@ -18,6 +18,7 @@ Plug 'preservim/tagbar'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'rhysd/vim-clang-format'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""
@@ -179,6 +180,9 @@ set pastetoggle=<f2>
 
 " theme
 colo onedark
+
+" colo seoul256
+" darkest range: 233 ~ 239
 
 if exists('+termguicolors')
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
