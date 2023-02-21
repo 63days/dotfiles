@@ -34,6 +34,7 @@ if [ $(program_is_installed nvim) == 1 ]; then
     echo_pass neovim
 else
     echo_fail neovim
+    sudo apt-get install software-properties-common
     sudo add-apt-repository -y ppa:neovim-ppa/stable
     sudo apt update && sudo apt -y install neovim
 fi
