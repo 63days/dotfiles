@@ -33,6 +33,7 @@ if [ $(program_is_installed zsh) == 1 ]; then
     echo_pass zsh
 else
     echo_fail zsh
+    sudo apt-get update -y
     sudo apt-get install -y zsh
 fi
 

@@ -8,7 +8,7 @@ docker run \
     --restart unless-stopped \
     --pid=host \
     --gpus all \
-    --hostname docker1 \
+    --hostname docker3 \
     --name juil \
     -v /home/juil/docker_home:/home/juil \
     -v="$HOME/.Xauthority:/root/.Xauthority:rw" \
@@ -16,5 +16,6 @@ docker run \
     -v"/home/dreamy1534:/home/dreamy1534:ro" \
     -v"/home/hieuristics:/home/hieuristics:ro" \
     -v "/scratch:/scratch" \
+    -v "/home/shared:/home/shared" \
     juil:0.3 \
     /bin/zsh
