@@ -8,7 +8,7 @@ docker run \
     --restart unless-stopped \
     --pid=host \
     --gpus all \
-    --hostname docker3 \
+    --hostname docker2 \
     --name juil \
     -v /home/juil/docker_home:/home/juil \
     -v="$HOME/.Xauthority:/root/.Xauthority:rw" \

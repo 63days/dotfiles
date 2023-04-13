@@ -7,10 +7,11 @@ docker run \
     -e DISPLAY=$DISPLAY \
     --restart unless-stopped \
     --pid=host \
-    --gpus all \
-    --name juil_kcloud_file_share \
+    --gpus \
+    'all,"capabilities=compute,utility,graphics,display"'\
+    --name juil-temp \
     -v /home/juil/docker_home:/home/juil \
     -v="$HOME/.Xauthority:/root/.Xauthority:rw" \
     -v="/home/shared:/shared" \
-    juil:0.2 \
+    juil_temp \
     /bin/zsh

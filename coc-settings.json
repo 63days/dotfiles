@@ -1,4 +1,6 @@
 {
+    "pyright.organizeimports.provider": "isort",
+    "python.sortImports.path": "/opt/conda/bin/isort",
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "~/.local/bin/black",
     "diagnostic.errorSign": "✖",

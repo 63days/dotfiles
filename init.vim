@@ -19,16 +19,19 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'rhysd/vim-clang-format'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/seoul256.vim'
+Plug 'Mofiqul/dracula.nvim'
+Plug 'shaunsingh/nord.nvim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""
 """""""""""" COC.NVIM """"""""""""
 """"""""""""""""""""""""""""""""""
 set hidden 
-set updatetime=300
+set updatetime=40
 set shortmess+=c
-let g:python3_host_prog = '/home/ubuntu/venv/bin/python'
-let g:coc_global_extensions = ['coc-json', 'coc-pyright']
+"let g:python3_host_prog = '/home/ubuntu/venv/bin/python'
+let g:python3_host_prog = '/opt/conda/bin/python'
+let g:coc_global_extensions = ['coc-pyright', 'coc-html', 'coc-clangd']
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -44,11 +47,6 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -60,12 +58,19 @@ function! s:show_documentation()
   endif
 endfunction
 
+function GetExtension()
+  let file_extension = expand('%:e')
+  return file_extension
+endfunction
+
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent>rr <Plug>(coc-rename)
+nmap <leader>ff <Plug>(coc-refactor)
 
 " Remap for format selected region
-"vmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 function! s:check_back_space() abort
 let col = col('.') - 1
@@ -102,7 +107,20 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
+function! MyFormat()
+  let ext = GetExtension()
+  if ext == "py"
+    call CocAction('format')
+    CocCommand python.sortImports
+  elseif ext == "cpp" || ext == "cc" || ext == "c" || ext == "cu" || ext == "hpp" || ext == "h"
+    ClangFormat
+  else
+    call CocAction('format')
+  endif
+endfunction
+
+"command! -nargs=0 Format :call CocAction('format') 
+command! -nargs=0 Format :call MyFormat()
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
@@ -127,14 +145,13 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-nnoremap <silent> <space>f  :call Search(input('Enter word to search: '))<CR>
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " general settings
 filetype plugin indent on
 
 if has("syntax")
-syntax on
+  syntax on
 endif
 
 set nu 
@@ -144,7 +161,9 @@ set title
 set splitright splitbelow
 set encoding=UTF-8
 set mouse=a
-set ts=4 sts=4 shiftwidth=4 expandtab
+"set ts=4 sts=4 shiftwidth=4 expandtab
+set shiftwidth=2 softtabstop=2 tabstop=2
+autocmd Filetype py ts=4 sts=4 shiftwidth=4 expandtab
 set autoindent cindent smartindent
 set updatetime=100
 set clipboard=unnamedplus
@@ -162,7 +181,7 @@ au BufReadPost *
 let mapleader=","
 noremap <leader>vimrc :e ~/.config/nvim/init.vim<cr>
 noremap <leader>zshrc :e ~/.zshrc<cr>
-noremap <leader>juilib :e ${HOME}/lib/juil_utils/jutils/<cr>
+noremap <leader>juilib :e ${HOME}/docker_home/lib/juil_utils/jutils/<cr>
 noremap <space>f :Files<cr>
 noremap <F3> :NERDTreeToggle<CR>
 noremap <F8> :TagbarToggle<CR>
@@ -180,8 +199,17 @@ set pastetoggle=<f2>
 
 " theme
 colo onedark
+"colo  dracula
+"colo seoul256
+"colo nord
 
-" colo seoul256
+let g:onedark_termcolors=16
+let g:onedark_terminal_italics=1
+let g:onedark_color_overrides = {
+\ "background": {"gui": "#2F343F", "cterm": "235", "cterm16": "0" },
+\ "purple": { "gui": "#C678DF", "cterm": "170", "cterm16": "5" }
+\}
+"colo seoul256
 " darkest range: 233 ~ 239
 
 if exists('+termguicolors')
@@ -237,3 +265,7 @@ let g:clang_format#style_options = {
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11",
             \ "BreakBeforeBraces" : "Stroustrup"}
+
+"auto-pairs"
+"let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+let g:AutoPairs = {'{':'}','"""':'"""', "'''":"'''"}
