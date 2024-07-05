@@ -30,7 +30,7 @@ set hidden
 set updatetime=40
 set shortmess+=c
 "let g:python3_host_prog = '/home/ubuntu/venv/bin/python'
-let g:python3_host_prog = '/opt/conda/bin/python'
+"let g:python3_host_prog = '/opt/conda/bin/python'
 let g:coc_global_extensions = ['coc-pyright', 'coc-html', 'coc-clangd']
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -180,6 +180,7 @@ au BufReadPost *
 " mapping
 let mapleader=","
 noremap <leader>vimrc :e ~/.config/nvim/init.vim<cr>
+noremap <leader>cocsettings :e ~/.config/nvim/coc-settings.json<cr>
 noremap <leader>zshrc :e ~/.zshrc<cr>
 noremap <leader>juilib :e ${HOME}/docker_home/lib/juil_utils/jutils/<cr>
 noremap <space>f :Files<cr>
@@ -195,6 +196,11 @@ noremap <leader>diag :CocDiagnostics 4<cr>
 noremap <leader>p o<esc>p
 noremap <leader>o O<esc>p
 set pastetoggle=<f2>
+set enc=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf8,prc
+set guifont=Monaco:h11
+set guifontwide=NSimsun:h12
 
 
 " theme

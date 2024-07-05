@@ -1,28 +1,20 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH=/usr/local/cuda-11.1/bin:${PATH}
-export PATH=/home/juil/.local/bin:${PATH}
-export PATH=/home/juil/lib/blender:${PATH}
-
-export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64:${LD_LIBRARY_PATH}
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./isosurface/:/home/xharlie/dev/isosurface/tbb/tbb2018_20180822oss/lib/intel64/gcc4.7:/opt/intel/lib/intel64:/opt/intel/mkl/lib/intel64:/usr/local/lib64:/usr/local/lib:/usr/local/cuda/lib64
-export PYMESH_PATH="/home/juil/lib/PyMesh"
-export BLENDER_SYSTEM_PYTHON="/opt/conda/bin/python3.7"
-export PYTHONPATH=$BLENDER_SYSTEM_PYTHON
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="eastwood"
+ZSH_THEME="juil"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "agnoster" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "juil" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -78,7 +70,7 @@ ZSH_THEME="eastwood"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,12 +91,17 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias zshconfig="source ~/.zshrc"
+
 alias tmux="TERM=screen-256color-bce tmux"
 alias zshconfig="source ~/.zshrc"
 alias ta="tmux attach -t"
@@ -112,36 +109,28 @@ alias tn="tmux new -s"
 alias tl="tmux ls"
 alias tk="tmux kill-session -t"
 
-alias cg="cd /home/juil/projects/PartGlot"
-alias c3="cd /home/juil/projects/3D_CRISPR"
-
-# alias for homework grading
-alias lapl_script="bash ~/courses/cs492j/lapl_script.sh"
-
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#prompt_context() {
-        #if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-            #prompt_segment black default "%(!.%{%F{yellow}%}.) juil"
-        #fi
-    #}
-alias vi="nvim"
-alias vim="nvim"
+prompt_context() {
+        if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+            prompt_segment black default "%(!.%{%F{yellow}%}.) juil"
+        fi
+    }
 
-alias cy="cd ~/projects/yesung_poi"
+alias vi='/sensei-fs/users/jkoo/lib/nvim/bin/nvim'
+alias vim='/sensei-fs/users/jkoo/lib/nvim/bin/nvim'
 
-alias run_hw="bash ~/courses/cs492j/gmp-homework/homework5-solutions/run_all.sh"
 # >>> conda initialize >>>
- #!! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/conda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/sensei-fs/users/jkoo/lib/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/conda/etc/profile.d/conda.sh" ]; then
-        . "/opt/conda/etc/profile.d/conda.sh"
+    if [ -f "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/conda/bin:$PATH"
+        export PATH="/sensei-fs/users/jkoo/lib/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup

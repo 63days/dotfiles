@@ -1,8 +1,8 @@
 {
     "pyright.organizeimports.provider": "isort",
-    "python.sortImports.path": "/opt/conda/bin/isort",
+    "python.sortImports.path": "/sensei-fs/users/jkoo/lib/miniconda3/bin/isort",
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "~/.local/bin/black",
+    "python.formatting.blackPath": "/sensei-fs/users/jkoo/lib/miniconda3/bin/black",
     "diagnostic.errorSign": "✖",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "ℹ",
