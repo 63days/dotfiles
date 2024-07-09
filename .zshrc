@@ -135,3 +135,9 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/sensei-fs/users/jkoo/lib/google-cloud-sdk/path.zsh.inc' ]; then . '/sensei-fs/users/jkoo/lib/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/sensei-fs/users/jkoo/lib/google-cloud-sdk/completion.zsh.inc' ]; then . '/sensei-fs/users/jkoo/lib/google-cloud-sdk/completion.zsh.inc'; fi
