@@ -9,5 +9,6 @@
     "diagnostic.hintSign": "➤",
     "diagnostic.refreshOnInsertMode": true,
     "python.analysis.typeCheckingMode": "off",
-    "suggest.noselect": true
+    "suggest.noselect": true,
+		"inlayHint.enable": true
 }

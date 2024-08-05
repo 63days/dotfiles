@@ -125,15 +125,31 @@ alias vim='/sensei-fs/users/jkoo/lib/nvim/bin/nvim'
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/sensei-fs/users/jkoo/lib/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+		eval "$__conda_setup"
 else
-    if [ -f "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/sensei-fs/users/jkoo/lib/miniconda3/bin:$PATH"
-    fi
+		if [ -f "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh" ]; then
+				. "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh"
+		else
+				export PATH="/sensei-fs/users/jkoo/lib/miniconda3/bin:$PATH"
+		fi
 fi
 unset __conda_setup
+# <<< conda initialize <<<
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/colligo/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/colligo/miniconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/colligo/miniconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/colligo/miniconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
 # <<< conda initialize <<<
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -141,3 +157,17 @@ if [ -f '/sensei-fs/users/jkoo/lib/google-cloud-sdk/path.zsh.inc' ]; then . '/se
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/sensei-fs/users/jkoo/lib/google-cloud-sdk/completion.zsh.inc' ]; then . '/sensei-fs/users/jkoo/lib/google-cloud-sdk/completion.zsh.inc'; fi
+
+unset VIRTUAL_ENV
+
+
+#For Grounded-SAM
+export AM_I_DOCKER=False
+export BUILD_WITH_CUDA=True
+
+# For GroundingDINO Path
+#export PATH="/sensei-fs/users/jkoo/projects/Grounded-Segment-Anything/GroundingDINO:$PATH"
+#
+
+# For github ssh
+ssh-add ~/.ssh/id_ed25519

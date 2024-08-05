@@ -56,17 +56,4 @@ else
     sudo apt-get update && sudo apt-get install yarn
 fi
 
-# Install vim plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-NVIMDIR=~/.config/nvim
-
-if [ ! -d "$NVIMDIR" ]; then
-    echo "== ${NVIMDIR} doesn't exist"
-    echo "== create ${NVIMDIR}"
-    mkdir -p "$NVIMDIR"
-fi
-
-ln -s ${PWD}/init.vim "${NVIMDIR}/init.vim"
-ln -s ${PWD}/coc-settings.json "${NVIMDIR}/coc-settings.json"
+sudo apt install -y universal-ctags
