@@ -61,7 +61,32 @@ if ! grep "prompt_context()" ${HOME}/.zshrc; then
             prompt_segment black default "%(!.%{%F{yellow}%}.) juil"
         fi
     }' >> ${HOME}/.zshrc
+else
+    echo "already prompt_context() set"
 fi
+
+if ! grep 'alias tmux="TERM=screen-256color-bce tmux"' ${HOME}/.zshrc; then
+	echo 'alias tmux="TERM=screen-256color-bce tmux"' >> ${HOME}/.zshrc
+else
+	echo 'already alias tmux TERM screen-256color'
+fi
+
+if ! grep "alias ta=" ${HOME}/.zshrc; then
+	echo 'alias ta="tmux attach -t"' >> ${HOME}/.zshrc
+fi
+
+if ! grep "alias tn=" ${HOME}/.zshrc; then
+	echo 'alias tn="tmux new -s"' >> ${HOME}/.zshrc
+fi
+
+if ! grep "alias tl=" ${HOME}/.zshrc; then
+	echo 'alias tl="tmux ls"' >> ${HOME}/.zshrc
+fi
+
+if ! grep "alias tk=" ${HOME}/.zshrc; then
+	echo 'alias tk="tmux kill-session -t"' >> ${HOME}/.zshrc
+fi
+
 
 if [ $(program_is_installed nvim) == 1 ]; then
     
@@ -75,8 +100,11 @@ if [ $(program_is_installed nvim) == 1 ]; then
 fi
 
 # change theme
-ln -s ${PWD}/juil.zsh-theme ~/.oh-my-zsh/themes/
+if [ -e ~/.oh-my-zsh/themes/juil.zsh-theme ]; then
+	echo "juil.zsh-theme already exists"
+else
+	ln -s ${PWD}/juil.zsh-theme ~/.oh-my-zsh/themes/
+fi
 sed -i 's/robbyrussell/juil/' ~/.zshrc
-source ${HOME}/.zshrc
 
-
+/opt/conda/bin/conda init zsh

@@ -36,7 +36,7 @@ else
     echo_fail neovim
     sudo apt-get install software-properties-common
     sudo add-apt-repository -y ppa:neovim-ppa/stable
-    sudo apt update && sudo apt -y install neovim
+    sudo apt-get update -y && sudo apt-get -y install neovim
 fi
 
 if [ $(program_is_installed node) == 1 ]; then
@@ -70,3 +70,5 @@ fi
 
 ln -s ${PWD}/init.vim "${NVIMDIR}/init.vim"
 ln -s ${PWD}/coc-settings.json "${NVIMDIR}/coc-settings.json"
+
+nvim +PlugInstall +qall

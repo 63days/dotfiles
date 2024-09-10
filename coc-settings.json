@@ -1,8 +1,8 @@
 {
     "pyright.organizeimports.provider": "isort",
-    "python.sortImports.path": "/sensei-fs/users/jkoo/lib/miniconda3/bin/isort",
+    "python.sortImports.path": "/opt/conda/bin/isort",
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/sensei-fs/users/jkoo/lib/miniconda3/bin/black",
+    "python.formatting.blackPath": "/opt/conda/bin/black",
     "diagnostic.errorSign": "✖",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "ℹ",
@@ -10,5 +10,6 @@
     "diagnostic.refreshOnInsertMode": true,
     "python.analysis.typeCheckingMode": "off",
     "suggest.noselect": true,
-		"inlayHint.enable": true
+		"inlayHint.enable": true,
+		"pyright.disableDiagnostics": true
 }

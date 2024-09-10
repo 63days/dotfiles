@@ -36,7 +36,7 @@ else
     echo_fail neovim
     sudo apt-get install software-properties-common
     sudo add-apt-repository -y ppa:neovim-ppa/stable
-    sudo apt update && sudo apt -y install neovim
+    sudo apt-get update -y && sudo apt-get -y install neovim
 fi
 
 if [ $(program_is_installed node) == 1 ]; then
@@ -55,5 +55,5 @@ else
     echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     sudo apt-get update && sudo apt-get install yarn
 fi
-
-sudo apt install -y universal-ctags
+sudo apt update -y
+sudo apt install -y zsh universal-ctags ripgrep tmux
