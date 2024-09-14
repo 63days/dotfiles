@@ -10,6 +10,7 @@
     "diagnostic.refreshOnInsertMode": true,
     "python.analysis.typeCheckingMode": "off",
     "suggest.noselect": true,
-		"inlayHint.enable": true,
-		"pyright.disableDiagnostics": true
+		"pyright.inlayHints.functionReturnTypes": false,
+		"pyright.inlayHints.variableTypes": false,
+		"pyright.inlayHints.parameterTypes": true
 }

@@ -70,7 +70,7 @@ ZSH_THEME="juil"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,35 +121,20 @@ prompt_context() {
 alias vi='/sensei-fs/users/jkoo/lib/nvim/bin/nvim'
 alias vim='/sensei-fs/users/jkoo/lib/nvim/bin/nvim'
 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/sensei-fs/users/jkoo/lib/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/sense-fs/users/jkoo/lib/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-		eval "$__conda_setup"
+    eval "$__conda_setup"
 else
-		if [ -f "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh" ]; then
-				. "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh"
-		else
-				export PATH="/sensei-fs/users/jkoo/lib/miniconda3/bin:$PATH"
-		fi
+    if [ -f "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/sensei-fs/users/jkoo/lib/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/sensei-fs/users/jkoo/lib/miniconda3/bin:$PATH"
+    fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('/home/colligo/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-#if [ $? -eq 0 ]; then
-#    eval "$__conda_setup"
-#else
-#    if [ -f "/home/colligo/miniconda3/etc/profile.d/conda.sh" ]; then
-#        . "/home/colligo/miniconda3/etc/profile.d/conda.sh"
-#    else
-#        export PATH="/home/colligo/miniconda3/bin:$PATH"
-#    fi
-#fi
-#unset __conda_setup
 # <<< conda initialize <<<
 
 # The next line updates PATH for the Google Cloud SDK.

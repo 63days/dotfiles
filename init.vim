@@ -32,6 +32,7 @@ set shortmess+=c
 "let g:python3_host_prog = '/home/ubuntu/venv/bin/python'
 "let g:python3_host_prog = '/opt/conda/bin/python'
 let g:coc_global_extensions = ['coc-pyright', 'coc-html', 'coc-clangd']
+let g:coc_disable_startup_warning = 1
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -291,3 +292,39 @@ let g:clang_format#style_options = {
 "auto-pairs"
 "let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 let g:AutoPairs = {'{':'}','"""':'"""', "'''":"'''"}
+
+
+"
+" + toggle remap arrow keys to resize windows
+"
+nnoremap + :call ToggleResizeMode()<CR>
+
+let s:KeyResizeEnabled = 0
+
+function! ToggleResizeMode()
+  if s:KeyResizeEnabled
+    call NormalArrowKeys()
+    let s:KeyResizeEnabled = 0
+  else
+    call ResizeArrowKeys()
+    let s:KeyResizeEnabled = 1
+  endif
+endfunction
+
+function! NormalArrowKeys()
+  " unmap arrow keys
+  echo 'normal arrow keys'
+  nunmap <Up>
+  nunmap <Down>
+  nunmap <Left>
+  nunmap <Right>
+endfunction
+
+function! ResizeArrowKeys()
+  " Remap arrow keys to resize window
+  echo 'Resize window with arrow keys'
+  nnoremap <Up>    :resize +2<CR>
+  nnoremap <Down>  :resize -2<CR>
+  nnoremap <Left>  :vertical resize -2<CR>
+  nnoremap <Right> :vertical resize +2<CR>
+endfunction

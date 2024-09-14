@@ -38,3 +38,5 @@ else
 fi
 
 git config --global credential.helper store
+git config --global user.email 63days@kaist.ac.kr
+git config --global user.name juil@adobe
